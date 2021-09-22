@@ -20,14 +20,16 @@ namespace ContatoreOre {
                     string s;
                     while ((s = sr.ReadLine()) != null) {
                         string[] fields = s.Split(";");
-                        Activity act = new Activity(Convert.ToInt32(fields[0]), Convert.ToDateTime(fields[1]), 
+                        Activity act = new Activity(Convert.ToInt32(fields[0]), Convert.ToDateTime(fields[1]),
                             Convert.ToDouble(fields[2]), fields[3], Convert.ToDouble(fields[4]), Convert.ToBoolean(fields[5]));
                         activities.AddLast(act);
+                        lastId = Convert.ToInt32(fields[0]);
                     }
 
                     sr.Close();
                 }
-            }
+            } else
+                File.Create(path).Close();
         }
 
         private void ShowCLI() {
